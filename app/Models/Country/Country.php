@@ -11,7 +11,7 @@ class Country extends Model
 
     protected $table = "countries";
 
-    protected $fillables = [
+    protected $fillable = [
         "name",
         "population",
         "territory",
@@ -21,5 +21,5 @@ class Country extends Model
         "continent"
     ];
 
-    public $timestamps = true;
+    
 }
