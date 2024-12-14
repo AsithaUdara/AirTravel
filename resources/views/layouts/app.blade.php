@@ -55,13 +55,13 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="{{ url('/') }}" class="logo">
-                        <img src="assets/images/logo.png" alt="">
+                        <img src="{{asset('assets/images/logo.png')}}" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
               <ul class="nav">
-                        <li><a href="home" class="active">Home</a></li>
-                        <li><a href="about.html">About</a></li>
+                        <li><a href="{{route('home')}}" class="active">Home</a></li>
+                        <!-- <li><a href="about.html">About</a></li> -->
                         <li><a href="deals.html">Deals</a></li>
                         
                                 <!-- Authentication Links -->
@@ -122,7 +122,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <p>Copyright © 2036 <a href="#">WoOx Travel</a> Company. All rights reserved. 
+          <p>Copyright © 2024 <a href="#">Udara-Travels</a> Company. All rights reserved. 
           <br>Design: <a href="https://templatemo.com" target="_blank" title="free CSS templates">TemplateMo</a> Distribution: <a href="https://themewagon.com target="_blank" >ThemeWagon</a></p>
         </div>
       </div>

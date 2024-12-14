@@ -370,8 +370,9 @@ Header Style
 }
 
 .header-area .main-nav .logo img {
-  width: 159px;
-  margin-top: 15px;
+  height: 200px;
+  width: 250px;
+  margin-top: -60px;
 }
 
 .background-header .main-nav .logo img {
@@ -1145,7 +1146,7 @@ About Page Style
   padding: 130px 0px 200px 0px;
 }
 
-.blur-bg {
+/* .blur-bg {
 	width: 100%;
   height: 100%;
   background: url(../images/about-content-bg.jpg) no-repeat center center fixed;
@@ -1155,7 +1156,20 @@ About Page Style
   left: 0;
   top: 0;
   z-index: 1;
+} */
+.blur-bg {
+  position: absolute; /* Position it properly to act as a background */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover; /* Adjust image to cover the container */
+  background-position: center;
+  filter: blur(8px) brightness(80%); /* Adjust the blur value as needed */
+  z-index: -1; /* Send it behind other content */
+  will-change: transform, filter;
 }
+
 
 .about-main-content .content {
   border-radius: 23px;
@@ -1235,10 +1249,23 @@ About Page Style
   color: #22b3c1;
 }
 
+/* .cities-town .slider-content .item .thumb {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+} */
 .cities-town .slider-content .item .thumb {
   position: relative;
   border-radius: 10px;
   overflow: hidden;
+  width: 250px; /* Set a fixed width for all cards */
+  height: 250px; /* Set a fixed height for all cards */
+}
+
+.cities-town .slider-content .item .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures images fill the space without distortion */
 }
 
 .cities-town .slider-content .item .thumb h4 {
@@ -1300,11 +1327,22 @@ About Page Style
   position: relative;
   min-height: 420px;
 }
+/*
+.weekly-offers .item .thumb img {
+  padding-right: 160px;
+  border-radius: 23px;
+} */
+
 
 .weekly-offers .item .thumb img {
   padding-right: 160px;
   border-radius: 23px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
+
+
 
 .weekly-offers .item .thumb .text {
   position: absolute;
