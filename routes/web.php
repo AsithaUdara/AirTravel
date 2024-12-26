@@ -25,12 +25,6 @@ Route::get('traveling/reservation/{id}', [\App\Http\Controllers\Traveling\Travel
 Route::post('traveling/reservation/{id}', [\App\Http\Controllers\Traveling\TravelingController::class, 'storeReservation'])
     ->name('traveling.reservation.store');
 
-// Route::get('traveling/pay/{country_id}', [\App\Http\Controllers\Traveling\TravelingController::class, 'payWithPaypal'])
-//     ->name('traveling.pay');
-
-
-// Route::get('traveling/success', [\App\Http\Controllers\Traveling\TravelingController::class, 'success'])
-//     ->name('traveling.success');
 
 
 
@@ -39,9 +33,9 @@ Route::get('/traveling/pay/{country_id}', [\App\Http\Controllers\Traveling\Trave
     ->name('traveling.pay')
     ->middleware(CheckForPrice::class);
 
-Route::get('/traveling/success/{country_id}', [\App\Http\Controllers\Traveling\TravelingController::class, 'success'])
+Route::get('/traveling/success', [\App\Http\Controllers\Traveling\TravelingController::class, 'success'])
     ->name('traveling.success')
-   ->middleware(CheckForPrice::class);
+    ->middleware(CheckForPrice::class);
 
 
 

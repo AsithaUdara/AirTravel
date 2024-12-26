@@ -17,8 +17,8 @@ class CheckForPrice
     public function handle(Request $request, Closure $next): Response
 {
     // Check if the current route is 'traveling/success' or 'traveling/pay'
-    if ($request->routeIs('traveling.success') || $request->routeIs('traveling.pay')) {
-        if (!Session::has('price') || Session::get('price') == 0) {
+    if ($request->url('traveling.success') OR $request->url('traveling.pay')) {
+        if (Session::get('price') == 0) {
             return abort(403, 'Forbidden: Invalid or missing price');
         }
     }
