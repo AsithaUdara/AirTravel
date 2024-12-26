@@ -62,7 +62,7 @@
               <ul class="nav">
                         <li><a href="{{route('home')}}" class="active">Home</a></li>
                         <!-- <li><a href="about.html">About</a></li> -->
-                        <li><a href="deals.html">Deals</a></li>
+                        <li><a href="{{route('traveling.deals')}}">Deals</a></li>
                         
                                 <!-- Authentication Links -->
                   @guest

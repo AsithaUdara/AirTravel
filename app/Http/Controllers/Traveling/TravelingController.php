@@ -92,4 +92,42 @@ class TravelingController extends Controller
 
         return view('traveling.success', compact('country'));
     }
+
+    public function deals()
+    {
+        $countries = Country::all();
+        $cities = City::select()->orderBy('id', 'desc')->take(4)->get();
+        $searches = collect();  // Ensure $searches is initialized as an empty collection if no search results
+    
+        return view('traveling.deals', compact('cities', 'countries', 'searches'));
+    }
+    
+    
+
+    public function searchDeals(Request $request)
+    {
+        $country_id = $request->get('country_id');
+        $price = $request->get('price');
+    
+        $query = City::query();
+    
+        // Filter by country if selected
+        if ($country_id) {
+            $query->where('country_id', $country_id);
+        }
+    
+        // Filter by price if selected (less than or equal to the selected price)
+        if ($price) {
+            $query->where('price', '<=', $price);
+        }
+    
+        // Fetch the results (you can change the limit as per your needs)
+        $searches = $query->orderBy('id', 'desc')->get();
+        $countries = Country::all();
+    
+        return view('traveling.searchDeals', compact('searches', 'countries', 'country_id', 'price'));
+    }
+    
+    
+    
 }

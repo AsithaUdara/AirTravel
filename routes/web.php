@@ -21,14 +21,10 @@ Route::get('traveling/about/{id}', [\App\Http\Controllers\Traveling\TravelingCon
 Route::get('traveling/reservation/{id}', [\App\Http\Controllers\Traveling\TravelingController::class, 'makeReservation'])
     ->name('traveling.reservation');
 
-
 Route::post('traveling/reservation/{id}', [\App\Http\Controllers\Traveling\TravelingController::class, 'storeReservation'])
     ->name('traveling.reservation.store');
 
-
-
-
-
+//paying
 Route::get('/traveling/pay/{country_id}', [\App\Http\Controllers\Traveling\TravelingController::class, 'payWithPaypal'])
     ->name('traveling.pay')
     ->middleware(CheckForPrice::class);
@@ -37,10 +33,17 @@ Route::get('/traveling/success', [\App\Http\Controllers\Traveling\TravelingContr
     ->name('traveling.success')
     ->middleware(CheckForPrice::class);
 
+//deals
+Route::get('traveling/deals', [\App\Http\Controllers\Traveling\TravelingController::class, 'deals'])
+    ->name('traveling.deals');
 
+Route::post('/traveling/search-deals', [\App\Http\Controllers\Traveling\TravelingController::class, 'searchDeals'])
+    ->name('traveling.deals.search');
 
+//users pages
+Route::post('users/my-bookings', [\App\Http\Controllers\Users\UsersController::class, 'bookings'])
+    ->name('users.bookings');
 
-    
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
