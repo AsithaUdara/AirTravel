@@ -4,45 +4,92 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckForPrice;
+use App\Http\Middleware\CheckForAuth;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
 
 Route::get('/home', [HomeController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('home');
+Route::get('/', [HomeController::class, 'index'])
+    ->name('index');
 
-Route::get('traveling/about/{id}', [\App\Http\Controllers\Traveling\TravelingController::class, 'about'])
+Route::group(['prefix'=>'traveling'],function(){
+
+    Route::get('/about/{id}', [\App\Http\Controllers\Traveling\TravelingController::class, 'about'])
     ->name('traveling.about');
  
-//booking
-Route::get('traveling/reservation/{id}', [\App\Http\Controllers\Traveling\TravelingController::class, 'makeReservation'])
-    ->name('traveling.reservation');
+    //booking
+    Route::get('/reservation/{id}', [\App\Http\Controllers\Traveling\TravelingController::class, 'makeReservation'])
+        ->name('traveling.reservation');
 
-Route::post('traveling/reservation/{id}', [\App\Http\Controllers\Traveling\TravelingController::class, 'storeReservation'])
-    ->name('traveling.reservation.store');
+    Route::post('/reservation/{id}', [\App\Http\Controllers\Traveling\TravelingController::class, 'storeReservation'])
+        ->name('traveling.reservation.store');
 
-//paying
-Route::get('/traveling/pay/{country_id}', [\App\Http\Controllers\Traveling\TravelingController::class, 'payWithPaypal'])
-    ->name('traveling.pay')
-    ->middleware(CheckForPrice::class);
+    //paying
+    Route::get('/pay/{country_id}', [\App\Http\Controllers\Traveling\TravelingController::class, 'payWithPaypal'])
+        ->name('traveling.pay')
+        ->middleware(CheckForPrice::class);
 
-Route::get('/traveling/success', [\App\Http\Controllers\Traveling\TravelingController::class, 'success'])
-    ->name('traveling.success')
-    ->middleware(CheckForPrice::class);
+    Route::get('/success', [\App\Http\Controllers\Traveling\TravelingController::class, 'success'])
+        ->name('traveling.success')
+        ->middleware(CheckForPrice::class);
 
-//deals
-Route::get('traveling/deals', [\App\Http\Controllers\Traveling\TravelingController::class, 'deals'])
-    ->name('traveling.deals');
+    //deals
+    Route::get('/deals', [\App\Http\Controllers\Traveling\TravelingController::class, 'deals'])
+        ->name('traveling.deals');
 
-Route::post('/traveling/search-deals', [\App\Http\Controllers\Traveling\TravelingController::class, 'searchDeals'])
-    ->name('traveling.deals.search');
+    Route::post('/search-deals', [\App\Http\Controllers\Traveling\TravelingController::class, 'searchDeals'])
+        ->name('traveling.deals.search');
+        
+});
+
+
 
 //users pages
-Route::post('users/my-bookings', [\App\Http\Controllers\Users\UsersController::class, 'bookings'])
+Route::get('users/my-bookings', [\App\Http\Controllers\Users\UsersController::class, 'bookings'])
+    ->middleware(['auth', 'verified'])
     ->name('users.bookings');
+
+//admin panel
+
+// Admin routes
+Route::group(['prefix' => 'admin'], function() {
+    // Show the login page
+    Route::get('/login', [\App\Http\Controllers\Admins\AdminsController::class, 'viewLogin'])
+        ->name('view.login')
+        ->middleware(CheckForAuth::class);
+
+    // Handle login POST request
+    Route::post('/login', [\App\Http\Controllers\Admins\AdminsController::class, 'checkLogin'])
+        ->name('check.login');
+
+    // Dashboard page (only accessible to authenticated admins)
+    Route::get('/index', [\App\Http\Controllers\Admins\AdminsController::class, 'index'])
+        ->middleware('auth:admin')
+        ->name('admins.dashboard');
+
+    //admins
+    Route::get('/all-admins', [\App\Http\Controllers\Admins\AdminsController::class, 'allAdmins'])
+        ->name('admins.all.admins');
+    
+    Route::get('/create-admins', [\App\Http\Controllers\Admins\AdminsController::class, 'createAdmins'])
+        ->name('admins.create');
+    
+    Route::post('/create-admins', [\App\Http\Controllers\Admins\AdminsController::class, 'storeAdmins'])
+        ->name('admins.store');
+
+    // Admin logout route
+    Route::post('/logout', [\App\Http\Controllers\Admins\AdminsController::class, 'logout'])
+        ->name('admin.logout');
+});
+
+
+
+//logout
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 
 Route::middleware('auth')->group(function () {

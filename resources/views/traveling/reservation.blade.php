@@ -8,7 +8,7 @@
         <div class="col-lg-12">
           <h4>Book Prefered Deal Here</h4>
           <h2>Make Your Reservation</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt uttersi labore et dolore magna aliqua is ipsum suspendisse ultrices gravida</p>
+          <p>Enjoy your travel with Udara Travels</p>
           <div class="main-button"><a href="about.html">Discover More</a></div>
         </div>
       </div>
@@ -115,10 +115,22 @@
                       <input type="text" value="{{$city->name}}" name="destination" class="Name" readonly>
                   </fieldset>
               </div>
+
+              <div class="col-lg-12"> 
+                @if(isset(Auth::user()->id))                       
+                  <fieldset>
+                  <input type="hidden" value="{{Auth::user()->id}}" name="user_id" class="Name required">
+                  </fieldset>
+                  @endif
+              </div>
               
               <div class="col-lg-12">                        
                   <fieldset>
+                  @if(isset(Auth::user()->id))  
                       <button type="submit" class="main-button">Make Your Reservation Now</button>
+                  @else
+                      <p class="alert alert-success">login to make a booking</p>
+                  @endif
                   </fieldset>
               </div>
             </div>

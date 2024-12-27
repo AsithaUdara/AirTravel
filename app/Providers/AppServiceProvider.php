@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 
+use Illuminate\Support\ServiceProvider;
+use App\Http\Middleware\CheckForPrice; // Import the middleware
+use App\Http\Middleware\CheckForAuth;  // Import the middleware
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,5 +23,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->app['router']->aliasMiddleware('check.for.price', CheckForPrice::class);
+        $this->app['router']->aliasMiddleware('check.for.auth', CheckForAuth::class);
     }
 }

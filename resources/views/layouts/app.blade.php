@@ -78,29 +78,30 @@
                   @endguest
 
                   @auth
-                  <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                      data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ Auth::user()->name }}
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" data-bs-popper="static">
-                        <!-- Logout Option -->
-                        <li>
-                            <a class="dropdown-item text-black" href="{{ route('logout') }}"
-                              onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                Logout
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- Hidden Logout Form -->
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </li>
-                            </li>
-                        </ul>
-                    </li>
-                @endauth
+<li class="nav-item dropdown">
+    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        {{ Auth::user()->name }}
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+        <li>
+            <a class="dropdown-item text-black" href="{{ route('users.bookings') }}">
+                My Bookings
+            </a>
+        </li>
+        <li>
+    <a class="dropdown-item text-black" href="{{ route('logout') }}" 
+       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        Logout
+    </a>
+</li>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
+
+    </ul>
+</li>
+@endauth
+
             </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
