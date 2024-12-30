@@ -40,7 +40,7 @@
             <a class="nav-link" href="{{ route('all.cities') }}" style="margin-left: 20px;">Cities</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="bookings-admins/show-bookings.html" style="margin-left: 20px;">Bookings</a>
+            <a class="nav-link" href="{{ route('all.bookings') }}" style="margin-left: 20px;">Bookings</a>
           </li>
         </ul>
       @endauth

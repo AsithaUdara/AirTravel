@@ -100,6 +100,18 @@ Route::group(['prefix' => 'admin'], function() {
         ->name('store.cities');
     Route::get('/delete-cities/{id}', [\App\Http\Controllers\Admins\AdminsController::class, 'deleteCities'])
         ->name('delete.cities');
+
+    //bookings
+    Route::get('/all-bookings', [\App\Http\Controllers\Admins\AdminsController::class, 'allBookings'])
+        ->name('all.bookings');
+    Route::get('/edit-booking/{id}', [\App\Http\Controllers\Admins\AdminsController::class, 'editBookings'])
+        ->name('edit.bookings');
+    Route::post('/update-booking/{id}', [\App\Http\Controllers\Admins\AdminsController::class, 'updateBookings'])
+        ->name('update.bookings');
+    Route::get('/delete-booking/{id}', [\App\Http\Controllers\Admins\AdminsController::class, 'deleteBookings'])
+        ->name('delete.bookings');
+
+
     // Admin logout route
     Route::post('/logout', [\App\Http\Controllers\Admins\AdminsController::class, 'logout'])
         ->name('admin.logout');

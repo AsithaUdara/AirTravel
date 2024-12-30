@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\City\City;
 use App\Models\Admin\Admin;
 use App\Models\Country\Country;
+Use App\Models\Reservation\Reservation;
 use Redirect;
 use File;
+
 
 class AdminsController extends Controller
 {
@@ -225,8 +227,46 @@ class AdminsController extends Controller
     }
 
     
-    
+    public function allBookings(Request $request)
+    {
 
+        $bookings = Reservation::select()->orderBy('id', 'desc')->get();
+    
+        return view('admins.allbookings', compact('bookings'));
+    }
+
+    public function editBookings($id)
+    {
+
+        $booking = Reservation::find($id);
+    
+        return view('admins.editbooking', compact('booking'));
+    }
+
+    public function updateBookings(Request $request,$id)
+    {
+
+        $editBooking = Reservation::find($id);
+        $editBooking->update($request->all());
+
+        if($editBooking){
+            return Redirect::route('all.bookings')->with(['update' => 'Booking status updated successfully']);
+        }
+    }
+
+    public function deleteBookings($id)
+    {
+
+        $deleteBooking = Reservation::find($id);
+
+
+        $deleteBooking->delete();
+
+        if($deleteBooking){
+            return Redirect::route('all.bookings')->with(['delete' => 'Reservation deleted successfully']);
+        }
+    }
+    
     public function logout(Request $request)
     {
         // Log out the admin from the 'admin' guard

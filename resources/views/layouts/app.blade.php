@@ -124,7 +124,7 @@
       <div class="row">
         <div class="col-lg-12">
           <p>Copyright © 2024 <a href="#">Udara-Travels</a> Company. All rights reserved. 
-          <br>Design: <a href="https://templatemo.com" target="_blank" title="free CSS templates">TemplateMo</a> Distribution: <a href="https://themewagon.com target="_blank" >ThemeWagon</a></p>
+          <br>Design: <a href="https://templatemo.com" target="_blank" title="free CSS templates">My repo</a></p>
         </div>
       </div>
     </div>
