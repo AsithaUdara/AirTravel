@@ -81,6 +81,25 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('/create-admins', [\App\Http\Controllers\Admins\AdminsController::class, 'storeAdmins'])
         ->name('admins.store');
 
+    //countries
+    Route::get('/all-countries', [\App\Http\Controllers\Admins\AdminsController::class, 'allCountries'])
+        ->name('all.countries');
+    Route::get('/create-countries', [\App\Http\Controllers\Admins\AdminsController::class, 'createCountries'])
+        ->name('create.countries');
+    Route::post('/create-countries', [\App\Http\Controllers\Admins\AdminsController::class, 'storeCountries'])
+        ->name('store.countries');
+    Route::get('/delete-countries/{id}', [\App\Http\Controllers\Admins\AdminsController::class, 'deleteCountries'])
+        ->name('delete.countries');
+
+    //cities
+    Route::get('/all-cities', [\App\Http\Controllers\Admins\AdminsController::class, 'allCities'])
+        ->name('all.cities');
+    Route::get('/create-cities', [\App\Http\Controllers\Admins\AdminsController::class, 'createCities'])
+        ->name('create.cities');
+    Route::post('/create-cities', [\App\Http\Controllers\Admins\AdminsController::class, 'storeCities'])
+        ->name('store.cities');
+    Route::get('/delete-cities/{id}', [\App\Http\Controllers\Admins\AdminsController::class, 'deleteCities'])
+        ->name('delete.cities');
     // Admin logout route
     Route::post('/logout', [\App\Http\Controllers\Admins\AdminsController::class, 'logout'])
         ->name('admin.logout');

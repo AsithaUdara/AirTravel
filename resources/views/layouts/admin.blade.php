@@ -34,10 +34,10 @@
             <a class="nav-link" href="{{ route('admins.all.admins') }}" style="margin-left: 20px;">Admins</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="countries-admins/show-country.html" style="margin-left: 20px;">Countries</a>
+            <a class="nav-link" href="{{ route('all.countries') }}" style="margin-left: 20px;">Countries</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="cities-admins/show-cities.html" style="margin-left: 20px;">Cities</a>
+            <a class="nav-link" href="{{ route('all.cities') }}" style="margin-left: 20px;">Cities</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="bookings-admins/show-bookings.html" style="margin-left: 20px;">Bookings</a>
@@ -74,7 +74,7 @@
           @else
 
           <li class="nav-item">
-            <a class="nav-link" href="{{route('view.Login')}}">login
+            <a class="nav-link" href="{{route('view.login')}}">login
             </a>
           </li>
           @endauth
